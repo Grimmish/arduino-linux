@@ -22,7 +22,7 @@ Supported hardware is defined in `boards.txt` files:
 
 Fire up the Arduino IDE GUI to find & download more hardware support: Tools >> Boards >> Boards Manager
 
-Hardware strings break down as `<vendor>:<arch>:<board>`. Examples:
+Hardware strings break down as `<package>:<arch>:<board>`. Examples:
 ```
   adafruit:avr:protrinket5
   arduino:avr:uno
