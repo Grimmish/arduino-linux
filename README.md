@@ -41,10 +41,10 @@ perl -pe 's/^.*\/packages\/(\w+)\/hardware\/(\w+)\/.*boards\.txt:(\w+)\.name=/$1
 Built-in libraries are in `<IDE root>/libraries`; libraries can also live in the `libraries/` subfolder in your sketchbook path.
 
 ## Notes for specific boards
-- *trinket/protrinket* :: These do not have serial support and rely on a weird USB bit-bang programming protocol (the "usbtiny" programmer), so no `--port` option is needed for uploading. Also, you will need to push the reset button to put them in programming mode just before you run the uploader.
+- **trinket/protrinket** :: These do not have serial support and rely on a weird USB bit-bang programming protocol (the "usbtiny" programmer), so no `--port` option is needed for uploading. Also, you will need to push the reset button to put them in programming mode just before you run the uploader.
 
 ## Under the hood of the Arduino CLI
-Without the GUI, the Arduino executable is mostly just wrangling a few low-level tools:
-- *avr-g++* :: Compiling, linking, rendering hex files
-- *stty* :: Arduino-compatible boards with serial support can be bounced into programming mode by sending a DTR bump at 1200 bps: `stty -F /dev/ttyACM0 speed 1200 hupcl`
-- *avrdude* :: Flashes the compiled hex code onto the chip. Heavily influenced by the various properties in `boards.txt` regarding MCU chip, programmer, etc.
+When it's not rendering the GUI, the Arduino executable is basically just wrangling a few low-level tools based on the hardware settings expressed in `boards.txt`. Use the `-v` option to see exactly how it's executing each stage:
+- **avr-g++** :: Compiling, linking, rendering hex files
+- **stty** :: Arduino-compatible boards with serial support can be bounced into programming mode by sending a DTR bump at 1200 bps: `stty -F /dev/ttyACM0 speed 1200 hupcl`
+- **avrdude** :: Flashes the compiled hex code onto the chip
